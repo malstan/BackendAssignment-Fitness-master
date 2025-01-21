@@ -43,7 +43,7 @@ export default (sequelize: Sequelize) => {
             allowNull: false,
             validate: {
                 len: [8, 100]
-            }
+            },
         },
         age: {
             type: DataTypes.INTEGER,
@@ -56,7 +56,13 @@ export default (sequelize: Sequelize) => {
         paranoid: true,
         timestamps: true,
         sequelize,
-        modelName: 'user'
+        modelName: 'user',
+        defaultScope: {
+            attributes: { exclude: ['password'] }
+        },
+        scopes: {
+            withPassword: { attributes: { exclude: [] } }
+        }
     })
 
     return UserModel

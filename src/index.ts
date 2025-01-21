@@ -13,9 +13,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // routes
+app.use('/auth', AuthRouter())
 app.use('/programs', ProgramRouter())
 app.use('/exercises', ExerciseRouter())
-app.use('/auth', AuthRouter())
 
 const httpServer = http.createServer(app)
 
