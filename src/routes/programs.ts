@@ -5,22 +5,26 @@ import {
 	NextFunction
 } from 'express'
 
-import { models } from '../db'
+import programController from '../controllers/program.controller'
+import authentication from '../middleware/authentication'
+import authorization from '../middleware/authorization'
+import { USER_ROLE } from '../utils/enums'
+import { idValidation, modeValidation } from '../validation/validation'
+import { validateRequest } from '../middleware/validation'
+import { updateProgramExercisesValidation } from '../validation/program.validation'
 
 const router: Router = Router()
 
-const {
-	Program
-} = models
-
 export default () => {
-	router.get('/', async (_req: Request, res: Response, _next: NextFunction) => {
-		const programs = await Program.findAll()
-		return res.json({
-			data: programs,
-			message: 'List of programs'
-		})
-	})
+	router.get('/programs', programController.getAll)
+	router.post('/program/:id/exercises/:mode', [
+		authentication, 
+		authorization(USER_ROLE.ADMIN), 
+		...idValidation,
+		...modeValidation,
+		...updateProgramExercisesValidation,
+		validateRequest
+	], programController.updateProgramExercises)
 
 	return router
 }

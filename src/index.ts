@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 // routes
 app.use('/auth', AuthRouter())
 app.use('/', UserRouter())
-app.use('/programs', ProgramRouter())
+app.use('/', ProgramRouter())
 app.use('/', ExerciseRouter())
 
 const httpServer = http.createServer(app)
