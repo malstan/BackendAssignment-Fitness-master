@@ -46,6 +46,12 @@ export default (sequelize: Sequelize) => {
 				allowNull: false
 			},
 		})
+
+		ExerciseModel.belongsToMany(models.User, {
+			through: models.UserExercise,
+			foreignKey: 'exerciseId',
+			as: 'users'
+		})
 	}
 
 	return ExerciseModel

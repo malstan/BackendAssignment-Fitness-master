@@ -5,6 +5,8 @@ import checkAdminOrUser from '../middleware/checkAdminOrUser'
 import { idValidation } from '../validation/validation'
 import { validateRequest } from '../middleware/validation'
 import { updateUserValidation } from '../validation/user.validation'
+import userExerciseController from '../controllers/userExercise.controller'
+import { removeTrackedExerciseValidation, trackExerciseValidation } from '../validation/userExercise.validation'
 
 const router: Router = Router()
 
@@ -25,6 +27,30 @@ export default () => {
         validateRequest, 
         checkAdminOrUser 
     ], UserController.updateUser)
+    
+    // exercises
+    router.get('/user/:id/exercises', [
+        authentication,
+        ...idValidation,
+        validateRequest,
+        checkAdminOrUser
+    ], userExerciseController.getTrackedExercises)
+
+    router.post('/user/:id/track', [
+        authentication,
+        ...idValidation,
+        ...trackExerciseValidation,
+        validateRequest,
+        checkAdminOrUser
+    ], userExerciseController.createTrackedExercise)
+
+    router.delete('/user/:id/exercise/:trackedExerciseId', [
+        authentication,
+        ...idValidation,
+        ...removeTrackedExerciseValidation,
+        validateRequest,
+        checkAdminOrUser
+    ], userExerciseController.removeTrackedExercise)
 
 	return router
 }

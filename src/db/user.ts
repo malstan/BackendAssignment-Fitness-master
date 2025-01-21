@@ -65,5 +65,13 @@ export default (sequelize: Sequelize) => {
         }
     })
 
+    UserModel.associate = (models) => {
+        UserModel.belongsToMany(models.Exercise, {
+            through: models.UserExercise,
+            foreignKey: 'userId',
+            as: 'exercises'
+        })
+    }
+
     return UserModel
 }
