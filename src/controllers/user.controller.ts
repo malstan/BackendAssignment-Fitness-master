@@ -1,15 +1,24 @@
 import { NextFunction, Request, Response } from "express";
+
 import { UserModel } from "../db/user";
 import { USER_ROLE } from "../utils/enums";
 
+/**
+ * Class handles user management.
+ * It can:
+ *  get all users,
+ *  get single user,
+ *  update user
+ * 
+ */
 class UserController {
 
     /**
-     * Get all users. Admins get all user data, users just id and nickname.
+     * Get all users. Admins gets all user data, users just id and nickname.
      * 
      * @returns json response
      */
-    async getAllUsers(req: Request, res: Response, next: NextFunction) {
+    async getAllUsers(req: Request, res: Response, _next: NextFunction) {
         // select fields
         let fields = ['id', 'nickName']
         if (req.user.role == USER_ROLE.ADMIN)
@@ -29,7 +38,7 @@ class UserController {
      * 
      * @returns json response
      */
-    async getUser(req: Request, res: Response, next: NextFunction) {
+    async getUser(req: Request, res: Response, _next: NextFunction) {
         // get record
         const user = await UserModel.findByPk(req.params.id)
 
@@ -47,7 +56,7 @@ class UserController {
      * 
      * @returns json response
      */
-    async updateUser(req: Request, res: Response, next: NextFunction) {
+    async updateUser(req: Request, res: Response, _next: NextFunction) {
         // get record
         const user = await UserModel.findByPk(req.params.id)
 
@@ -73,6 +82,7 @@ class UserController {
                 data: user,
                 message: req.__('user.updated')
             })
+
         } catch (err) {
             console.error({ message: "Error updating user.", error: err.message })
             return res.status(500).json({ message: req.__('smthWrong') })

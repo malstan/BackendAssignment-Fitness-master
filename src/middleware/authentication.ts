@@ -1,13 +1,14 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-const jwt_secret = 'my-jwt-secret'
-
 /**
  * Check if Authorization token is valid. Save id and role to request.
  * 
  */
 export default (req: Request, res: Response, next: NextFunction) => {
+  // hardcoded just for purpose of this assignment
+  const jwt_secret = 'my-jwt-secret'
+
   const token = req.header('Authorization')?.replace('Bearer ', '')
 
   // check token

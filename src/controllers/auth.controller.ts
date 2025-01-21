@@ -1,8 +1,13 @@
 import { NextFunction, Request, Response } from "express";
-import { UserModel } from "../db/user";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+import { UserModel } from "../db/user";
+
+/**
+ * Class handles registration and logging in users.
+ * 
+ */
 class AuthController {
 
     /**
@@ -20,6 +25,7 @@ class AuthController {
             await user.save()
 
             return res.status(201).json({ message: req.__('auth.registered') })
+
         } catch (err) {
             console.error({ message: "Error registering user.", error: err.message })
             return res.status(500).json({ message: req.__('smthWrong') })

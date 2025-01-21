@@ -13,6 +13,10 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
+/**
+ * i18n uses Accept-Language header for localization of response messages.
+ */
 app.use(i18n.init)
 
 // routes

@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response } from "express";
+
 import { USER_ROLE } from "../utils/enums";
 
 /**
- * Only admin and user with ID same as ID route parameter can pass.
+ * Only admin and user with ID same as route parameter ID can pass.
  * 
  */
 export default (req: Request, res: Response, next: NextFunction) => {
