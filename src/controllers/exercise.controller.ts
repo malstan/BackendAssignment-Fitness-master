@@ -1,10 +1,27 @@
 import { NextFunction, Request, Response } from "express";
 import { ExerciseModel } from "../db/exercise";
 import { ProgramModel } from "../db/program";
+import { Op } from "sequelize";
 
 class ExerciseController {
     async getAllExercises(req: Request, res: Response, next: NextFunction) {
-        const exercises = await ExerciseModel.findAll({
+        const { page = 1, limit = 2, programID, search } = req.query
+
+        // pagination
+        const offset = (Number(page) - 1) * Number(limit)
+
+        let filters: any = {}
+        // filtering
+        if (programID) filters.programID = programID
+
+        // searching
+        if(search) 
+            filters[Op.or] = [ { name: { [Op.like]: `%${search}%`} } ]
+
+        const exercises = await ExerciseModel.findAndCountAll({
+            where: filters,
+            offset,
+            limit: Number(limit),
 			include: [{
 				model: ProgramModel,
 				as: 'program'
@@ -12,7 +29,9 @@ class ExerciseController {
 		})
 
 		return res.json({
-			data: exercises,
+			data: exercises.rows,
+            total: exercises.count,
+            page: Number(page),
 			message: req.__('exercise.list')
 		})
     }
