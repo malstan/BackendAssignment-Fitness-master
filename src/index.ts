@@ -6,6 +6,7 @@ import { sequelize } from './db'
 import ProgramRouter from './routes/programs'
 import ExerciseRouter from './routes/exercises'
 import AuthRouter from './routes/auth'
+import UserRouter from './routes/users'
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json())
 
 // routes
 app.use('/auth', AuthRouter())
+app.use('/', UserRouter())
 app.use('/programs', ProgramRouter())
 app.use('/exercises', ExerciseRouter())
 
