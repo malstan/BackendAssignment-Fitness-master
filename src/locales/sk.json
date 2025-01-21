@@ -1,0 +1,49 @@
+{
+    "smthWrong": "Niečo sa pokazilo.",
+    "auth": {
+        "registered": "Používateľ bol úspešne zaregistrovaný.",
+        "invalidPassword": "Neplatné heslo.",
+        "loggedIn": "Používateľ bol prihlásený.",
+        "noToken": "Prístup zamietnutý. Nebol poskytnutý žiadny token.",
+        "invalidToken": "Neplatný token.",
+        "forbidden": "Zakázané."
+    },
+    "user": {
+        "list": "Zoznam používateľov.",
+        "notFound": "Používateľ nebol nájdený.",
+        "detail": "Detaily používateľa.",
+        "updated": "Používateľ bol aktualizovaný."
+    },
+    "exercise": {
+        "list": "Zoznam cvičení.",
+        "created": "Cvičenie bolo vytvorené.",
+        "notFound": "Cvičenie nebolo nájdené.",
+        "updated": "Cvičenie bolo aktualizované.",
+        "deleted": "Cvičenie bolo zmazané."
+    },
+    "program": {
+        "list": "Zoznam programov.",
+        "notFound": "Program nebol nájdený."
+    },
+    "programExercise": {
+        "updated": "Cvičenie v programe bolo aktualizované.",
+        "list": "Zoznam sledovaných cvičení.",
+        "tracked": "Cvičenie bolo sledované."
+    },
+    "validation": {
+        "message": "Validácia zlyhala.",
+        "invalidName": "Neplatné meno.",
+        "invalidSurname": "Neplatné priezvisko.",
+        "invalidNickname": "Neplatná prezývka.",
+        "invalidEmail": "Neplatný email.",
+        "invalidPassword": "Neplatné heslo.",
+        "invalidAge": "Neplatný vek.",
+        "invalidRole": "Neplatná rola.",
+        "array": "Musí byť pole.",
+        "invalidId": "ID musí byť kladné celé číslo.",
+        "invalidMode": "Neplatný režim.",
+        "invalidDatetime": "Neplatný formát dátumu a času.",
+        "invalidDuration": "Neplatná dĺžka trvania.",
+        "invalidDifficulty": "Neplatný typ náročnosti."
+    }
+}

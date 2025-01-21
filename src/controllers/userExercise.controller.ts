@@ -19,7 +19,7 @@ class UserExerciseController {
 
         return res.json({
             data: trackedExercises,
-            message: 'List of tracked exercises.'
+            message: req.__('programExercise.list')
         })
     }
 
@@ -35,12 +35,12 @@ class UserExerciseController {
 
             return res.status(201).json({
                 data: trackedExercise,
-                message: 'Exercise tracked.'
+                message: req.__('programExercise.tracked')
             })
             
         }  catch (err) {
             console.error({ message: "Error creating tracked exercise.", error: err.message })
-            return res.status(500).json({ message: "Something went wrong." })
+            return res.status(500).json({ message: req.__('smthWrong') })
         }
     }
 
@@ -52,15 +52,15 @@ class UserExerciseController {
 
         // check record
         if(!trackedExercise || trackedExercise.userId != userId)
-            return res.status(404).json({ message: 'Exercise not found.' })
+            return res.status(404).json({ message: req.__('exercise.notFound') })
 
         try {
             trackedExercise.destroy()
 
-            return res.json({ message: "Exercise deleted." })
+            return res.json({ message: req.__('exercise.deleted') })
         }  catch (err) {
             console.error({ message: "Error removing tracked exercise.", error: err.message })
-            return res.status(500).json({ message: "Something went wrong." })
+            return res.status(500).json({ message: req.__('smthWrong') })
         }
     }
 }

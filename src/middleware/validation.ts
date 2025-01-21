@@ -5,9 +5,10 @@ import { Request, Response, NextFunction } from 'express';
  * Check validation result.
  * 
  */
-export const validateRequest = (req: Request, res: Response, next: NextFunction) => {
+export default (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req)
     if (errors.isEmpty()) return next()
 
-    return res.status(400).json({ errors: errors.array() })
+
+    return res.status(422).json({ message: req.__('validation.message'), errors: errors.array() })
 };

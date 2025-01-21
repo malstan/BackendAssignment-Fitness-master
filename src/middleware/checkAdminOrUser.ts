@@ -12,5 +12,5 @@ export default (req: Request, res: Response, next: NextFunction) => {
     // check if authenticated user is wanted user
     if (req.user?.id.toString() == req.params.id) return next()
 
-    return res.status(403).json({ message: 'Forbidden.' })
+    return res.status(403).json({ message: req.__('auth.forbidden') })
 }

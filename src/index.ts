@@ -1,6 +1,7 @@
 import http from 'http'
 import express from 'express'
 import * as bodyParser from 'body-parser'
+import i18n from './i18n'
 
 import { sequelize } from './db'
 import ProgramRouter from './routes/programs'
@@ -12,6 +13,7 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(i18n.init)
 
 // routes
 app.use('/auth', AuthRouter())

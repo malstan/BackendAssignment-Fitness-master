@@ -11,7 +11,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
   const token = req.header('Authorization')?.replace('Bearer ', '')
 
   // check token
-  if (!token) return res.status(401).json({ message: 'Access denied. No token provided.' })
+  if (!token) return res.status(401).json({ message: req.__('auth.noToken') })
 
   try {
     // verify token
@@ -21,6 +21,6 @@ export default (req: Request, res: Response, next: NextFunction) => {
     return next()
 
   } catch (err) {
-    return res.status(400).json({ message: 'Invalid token.' })
+    return res.status(400).json({ message: req.__('auth.invalidToken') })
   }
 };

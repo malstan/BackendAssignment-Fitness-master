@@ -9,7 +9,7 @@ class ProgramController {
 
 		return res.json({
 			data: programs,
-			message: 'List of programs'
+			message: res.__('program.list')
 		})
     }
 
@@ -18,7 +18,7 @@ class ProgramController {
         const program = await ProgramModel.findByPk(req.params.id)
 
         // check record
-        if(!program) return res.status(404).json({ message: 'Program not found.' })
+        if(!program) return res.status(404).json({ message: req.__('program.notFound') })
 
         try {
             const { exerciseIds } = req.body
@@ -32,13 +32,11 @@ class ProgramController {
             else if (req.params.mode === 'remove')
                 await program.removeExercises(exercises)
 
-            return res.json({message: 'Program exercises updated.'})
+            return res.json({message: req.__('programExercise.updated')})
         } catch(err) {
             console.error({ message: "Error updating program exercises.", error: err.message })
-            return res.status(500).json({ message: "Something went wrong." })
+            return res.status(500).json({ message: req.__('smthWrong') })
         }
-
-
     }
 }
 

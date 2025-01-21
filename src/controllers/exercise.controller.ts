@@ -13,7 +13,7 @@ class ExerciseController {
 
 		return res.json({
 			data: exercises,
-			message: 'List of exercises'
+			message: req.__('exercise.list')
 		})
     }
 
@@ -28,11 +28,11 @@ class ExerciseController {
 
             return res.status(201).json({
                 data: exercise,
-                message: 'Exercise created.'
+                message: req.__('exercise.created')
             })
         } catch (err) {
             console.error({ message: "Error creating exercise.", error: err.message })
-            return res.status(500).json({ message: "Something went wrong." })
+            return res.status(500).json({ message: req.__('smthWrong') })
         }
     }
 
@@ -41,7 +41,7 @@ class ExerciseController {
         const exercise = await ExerciseModel.findByPk(req.params.id)
 
         // check record
-        if(!exercise) return res.status(404).json({ message: 'Exercise not found.' })
+        if(!exercise) return res.status(404).json({ message: req.__('exercise.notFound') })
         
         try {
             const {difficulty, name, programID } = req.body
@@ -57,11 +57,11 @@ class ExerciseController {
 
             return res.json({
                 data: exercise,
-                message: "Exercise updated."
+                message: req.__('exercise.updated')
             })
         } catch(err) {
             console.error({ message: "Error updating exercise.", error: err.message })
-            return res.status(500).json({ message: "Something went wrong." })
+            return res.status(500).json({ message: req.__('smthWrong') })
         }
 
     }
@@ -71,15 +71,15 @@ class ExerciseController {
         const exercise = await ExerciseModel.findByPk(req.params.id)
 
         // check record
-        if(!exercise) return res.status(404).json({ message: 'Exercise not found.' })
+        if(!exercise) return res.status(404).json({ message: req.__('exercise.notFound') })
         
         try {
             exercise.destroy()
 
-            return res.json({ message: "Exercise deleted." })
+            return res.json({ message: req.__('exercise.deleted') })
         } catch(err) {
             console.error({ message: "Error deleting exercise.", error: err.message })
-            return res.status(500).json({ message: "Something went wrong." })
+            return res.status(500).json({ message: req.__('smthWrong') })
         }
     }
 }

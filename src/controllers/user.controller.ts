@@ -20,7 +20,7 @@ class UserController {
 
         return res.json({
             data: users,
-            message: 'List of users.'
+            message: req.__('user.list')
         })
     }
 
@@ -34,11 +34,11 @@ class UserController {
         const user = await UserModel.findByPk(req.params.id)
 
         // check record
-        if (!user) return res.status(404).json({ message: 'User not found.' })
+        if (!user) return res.status(404).json({ message: req.__('user.notFound') })
 
         return res.json({
             data: user,
-            message: 'User detail.'
+            message: req.__('user.detail')
         })
     }
 
@@ -52,7 +52,7 @@ class UserController {
         const user = await UserModel.findByPk(req.params.id)
 
         // check record
-        if (!user) return res.status(404).json({ message: 'User not found.' })
+        if (!user) return res.status(404).json({ message: req.__('user.notFound') })
 
         const { name, surname, nickName, age, role } = req.body
 
@@ -71,11 +71,11 @@ class UserController {
 
             return res.json({
                 data: user,
-                message: "User updated."
+                message: req.__('user.updated')
             })
         } catch (err) {
             console.error({ message: "Error updating user.", error: err.message })
-            return res.status(500).json({ message: "Something went wrong." })
+            return res.status(500).json({ message: req.__('smthWrong') })
         }
     }
 }

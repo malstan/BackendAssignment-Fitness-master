@@ -9,5 +9,5 @@ export default (requiredRole: USER_ROLE) => (req: Request, res: Response, next: 
     // check if the user is authorized
     if (req.user?.role == requiredRole) return next();
 
-    return res.status(403).json({ message: 'Forbidden.' })
+    return res.status(403).json({ message: req.__('auth.forbidden') })
 }

@@ -5,7 +5,7 @@ import authorization from '../middleware/authorization'
 import { USER_ROLE } from '../utils/enums'
 import { createExerciseValidation, updateExerciseValidation } from '../validation/exercise.validation'
 import { idValidation } from '../validation/validation'
-import { validateRequest } from '../middleware/validation'
+import validateRequest from '../middleware/validation'
 
 const router: Router = Router()
 

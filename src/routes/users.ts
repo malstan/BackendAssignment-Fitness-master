@@ -3,7 +3,7 @@ import authentication from '../middleware/authentication'
 import UserController from "../controllers/user.controller"
 import checkAdminOrUser from '../middleware/checkAdminOrUser'
 import { idValidation } from '../validation/validation'
-import { validateRequest } from '../middleware/validation'
+import validateRequest from '../middleware/validation'
 import { updateUserValidation } from '../validation/user.validation'
 import userExerciseController from '../controllers/userExercise.controller'
 import { removeTrackedExerciseValidation, trackExerciseValidation } from '../validation/userExercise.validation'

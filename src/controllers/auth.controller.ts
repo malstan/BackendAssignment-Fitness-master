@@ -19,10 +19,10 @@ class AuthController {
             const user = new UserModel({ name, surname, nickName, email, password: hashedPassword, age, role })
             await user.save()
 
-            return res.status(201).json({ message: 'User registered successfully' })
+            return res.status(201).json({ message: req.__('auth.registered') })
         } catch (err) {
-            console.error({ message: 'Error registering user', error: err.message })
-            return res.status(500).json({ message: "Something went wrong." })
+            console.error({ message: "Error registering user.", error: err.message })
+            return res.status(500).json({ message: req.__('smthWrong') })
         }
     }
 
@@ -40,20 +40,20 @@ class AuthController {
 
             // check user
             const user = await UserModel.scope('withPassword').findOne({ where: { email } })
-            if (!user) return res.status(404).json({ message: 'User not found' })
+            if (!user) return res.status(404).json({ message: req.__('user.notFound') })
 
             // check password
             const isValidPassword = await bcrypt.compare(password, user.password)
-            if (!isValidPassword) return res.status(400).json({ message: 'Invalid password' })
+            if (!isValidPassword) return res.status(400).json({ message: req.__('auth.invalidPassword') })
 
             // generate token
             const token = jwt.sign({ id: user.id, role: user.role }, jwt_secret, { expiresIn: '1d' })
 
-            return res.status(200).json({ message: 'User logged in', token });
+            return res.status(200).json({ message: req.__('auth.loggedIn'), token });
 
         } catch (err) {
             console.error({ message: 'Error logging in', error: err.message })
-            return res.status(500).json({ message: "Something went wrong." })
+            return res.status(500).json({ message: req.__('smthWrong') })
         }
     }
 }

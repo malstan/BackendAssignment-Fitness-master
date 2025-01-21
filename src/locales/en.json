@@ -1,0 +1,49 @@
+{
+    "smthWrong": "Something went wrong.",
+    "auth": {
+        "registered": "User registered successfully.",
+        "invalidPassword": "invalid password.",
+        "loggedIn": "User logged in.",
+        "noToken": "Access denied. No token provided.",
+        "invalidToken": "invalid token.",
+        "forbidden": "Forbidden."
+    },
+    "user": {
+        "list": "List of users.",
+        "notFound": "User not found.",
+        "detail": "User detail.",
+        "updated": "User updated."
+    },
+    "exercise": {
+        "list": "List of exercises.",
+        "created": "Exercise created.",
+        "notFound": "Exercise not found.",
+        "updated": "Exercise updated.",
+        "deleted": "Exercise deleted."
+    },
+    "program": {
+        "list" : "List of programs.",
+        "notFound": "Program not found."
+    },
+    "programExercise": {
+        "updated": "Program exercise updated.",
+        "list": "List of tracked exercises.",
+        "tracked": "Exercise tracked."
+    },
+    "validation": {
+        "message": "Validation failed.",
+        "invalidName": "Invalid name.",
+        "invalidSurname": "Invalid surname.",
+        "invalidNickname": "Invalid nickname.",
+        "invalidEmail": "Invalid email.",
+        "invalidPassword": "Invalid password.",
+        "invalidAge": "Invalid age.",
+        "invalidRole": "Invalid role.",
+        "array": "Must be an array.",
+        "invalidId": "ID must be a positive integer.",
+        "invalidMode": "Invalid mode.",
+        "invalidDatetime": "Invalid datetime format.",
+        "invalidDuration": "Invalid duration.",
+        "invalidDifficulty": "Invalid difficulty type."
+    }
+}
