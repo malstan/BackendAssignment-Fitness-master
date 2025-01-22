@@ -2,7 +2,7 @@ import { body } from 'express-validator';
 import { USER_ROLE } from '../utils/enums';
 
 export const registerUserValidation = [
-    body('name').isString().withMessage((value, { req }) => req.__('validation.invalidName')),
+    body('name').optional().isString().withMessage((value, { req }) => req.__('validation.invalidName')),
     body('surname').optional().isString().withMessage((value, { req }) => req.__('validation.invalidsurname')),
     body('nickName').optional().isString().withMessage((value, { req }) => req.__('validation.invalidNickane')),
     body('email').isEmail().withMessage((value, { req }) => req.__('validation.invalidEmail')),
