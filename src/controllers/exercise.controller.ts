@@ -97,7 +97,7 @@ class ExerciseController {
             exercise.dificulty = difficulty || exercise.difficulty
             exercise.name = name || exercise.name
 
-            exercise.programID = programID || exercise.program
+            exercise.programID = programID || exercise.programID
 
             // save
             await exercise.save()

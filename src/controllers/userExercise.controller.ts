@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 
 import { UserExerciseModel } from "../db/userExercise";
 import { ExerciseModel } from "../db/exercise";
+import { UserModel } from "../db/user";
 
 /**
  * Class handles exercises of user.
@@ -20,6 +21,10 @@ class UserExerciseController {
      */
     async getTrackedExercises(req: Request, res: Response, _next: NextFunction) {
         const userId = req.params.id
+
+        // check user
+        const user = await UserModel.findByPk(userId)
+        if(!user) return res.status(404).json({message: req.__('user.notFound')})
 
         const trackedExercises = await UserExerciseModel.findAll({
             where: { userId },
@@ -47,9 +52,16 @@ class UserExerciseController {
         try {
             const { exerciseTime, duration, exerciseId } = req.body
 
+            // check user
+            const user = await UserModel.findByPk(userId)
+            if(!user) return res.status(404).json({message: req.__('user.notFound')})
+
+            // check exercise
+            const exercise = await ExerciseModel.findByPk(exerciseId)
+            if(!exercise) return res.status(404).json({message: req.__('exercise.notFound')})
+
             // create
             const trackedExercise = new UserExerciseModel({ exerciseTime, duration, userId, exerciseId })
-
             await trackedExercise.save()
 
             return res.status(201).json({
@@ -70,6 +82,10 @@ class UserExerciseController {
      */
     async removeTrackedExercise(req: Request, res: Response, _next: NextFunction) {
         const userId = req.params.id
+
+        // check user
+        const user = await UserModel.findByPk(userId)
+        if(!user) return res.status(404).json({message: req.__('user.notFound')})
 
         // get record
         const trackedExercise = await UserExerciseModel.findByPk(req.params.trackedExerciseId)

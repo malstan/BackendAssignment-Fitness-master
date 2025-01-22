@@ -33,7 +33,13 @@ export default (sequelize: Sequelize) => {
         paranoid: false,
         timestamps: true,
         sequelize,
-        modelName: 'userExercise'
+        modelName: 'userExercise',
+        indexes: [
+            {
+                unique: false,
+                fields: ['userId', 'exerciseId']
+            }
+        ]
     })
 
     UserExerciseModel.associate = (models) => {

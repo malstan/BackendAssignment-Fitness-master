@@ -9,6 +9,10 @@ const {
 const seedDB = async () => {
 	await sequelize.sync({ force: true })
 
+	// remove unique index on userExercises so users can have more pairs of userId and exerciseId
+	const queryInterface = sequelize.getQueryInterface()
+	await queryInterface.removeConstraint('userExercises', 'userExercises_exerciseId_userId_key')
+
 	await Program.bulkCreate([{
 		name: 'Program 1'
 	}, {
